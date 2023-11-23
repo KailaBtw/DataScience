@@ -2,32 +2,6 @@
 #Potion of Saradomon = 360 xp actual
 #super ranging potion = 365xp actual
 
-#primary Ingredients
-guam = 1678000 
-mar = 1371000
-tar = 571000
-har = 531000
-ranarr = 336000
-irit = 209300
-ava = 191300
-kwuarm = 124600
-cada = 93100
-dwarf = 73000
-torstol = 0
-
-#secondaries
-newts = 1665000
-limps = 806000
-snapes = 604000
-horns = 1096000
-eggs = 503000
-berries = 168000
-wines = 73000
-
-#other vars
-baseXp = 92660000
-sinisterKeyCount = 32026 #2331xp each (with sara pots)
-
 
 #increase herb count based on number of sinister keys
 sinisterKeys <- function(keys) {
@@ -39,25 +13,24 @@ sinisterKeys <- function(keys) {
   har <<- har + (keys*2)
   print("sinisters calculated")
 }
-sinisterKeys(sinisterKeyCount)
+
 
 
 #find which is lower, secondaries or herbs (to calc pot count)
 findMinimums <- function() {
-  attackPots <<- min(c(guam,newts))
-  poisonPots <<- min(c(mar,horns))
-  strPots <<- min(c(tar,limps))
-  statPots <<- min(c(har,eggs))
-  prayPots <<- min(c(ranarr,snapes))
-  superAtks <<- min(c(irit,newts))
-  superStrs <<- min(c(kwuarm,limps))
-  superRunePots <<- ava
-  superDefs <<- min(c(cada,berries))
-  rangePots <<- min(c(dwarf,wines))
-  saraPots <<- torstol
+  attackPots <<- min(c(guam + (0.1 * guam),newts + (0.1 * newts)))
+  poisonPots <<- min(c(mar + (0.1 * mar),horns + (0.1 * horns)))
+  strPots <<- min(c(tar + (0.1 * tar),limps + (0.1 * limps)))
+  statPots <<- min(c(har + (0.1 * har),eggs + (0.1 * eggs)))
+  prayPots <<- min(c(ranarr + (0.1 * ranarr),snapes + (0.1 * snapes)))
+  superAtks <<- min(c(irit + (0.1 * irit),newts + (0.1 * newts)))
+  superStrs <<- min(c(kwuarm + (0.1 * kwuarm),limps + (0.1 * limps)))
+  superRunePots <<- ava + (0.1 * ava)
+  superDefs <<- min(c(cada + (0.1 * cada),berries + (0.1 * berries)))
+  rangePots <<- min(c(dwarf + (0.1 * dwarf),wines + (0.1 * wines)))
+  saraPots <<- torstol + (0.1 * torstol)
   #print("mins calculated")
 }
-findMinimums()
 
 
 #find the total number of vials required
@@ -77,7 +50,6 @@ findVials <- function() {
   totalVials <<- totalVials + rangePots
   #print("vials calculated")
 }
-findVials()
 
 #calculate the herblaw xp after 
 calculateTotal <- function(currentXp) {
@@ -97,6 +69,42 @@ calculateTotal <- function(currentXp) {
   totalXp <<- totalXp + (rangePots * 365)
   #print("done Calculating Total")
 }
+
+
+#starting information
+
+#primary Ingredients
+guam = 1919000
+mar = 1551000
+tar = 708000
+har = 636000
+ranarr = 419000
+irit = 268000
+ava = 243000
+kwuarm = 161000
+cada = 122000
+dwarf = 95000
+torstol = 0
+
+#secondaries
+newts = 1665000+200000+20000000 #dded 200k to each for infinite secondaries
+limps = 806000+2000000
+snapes = 604000+2000000
+horns = 1186000+35000+2000000
+eggs = 503000
+berries = 168000 
+wines = 73000+2000000
+
+#other vars
+baseXp = 92660000
+sinisterKeyCount = 33000 #2331xp each (with sara pots)
+
+
+#"main" method
+
+sinisterKeys(sinisterKeyCount)
+findMinimums()
+findVials()
 calculateTotal(baseXp)
 
 paste("Total Zammy Wine needed",rangePots)
