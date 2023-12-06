@@ -1,8 +1,8 @@
-baseXp <- 13535000
+baseXp <- 28000000
 
 mapleLogs <- 1250000
 yewLogs <- 2935000
-magicLogs <- 672000
+magicLogs <- 646000
 
 mapleLogXp <- 270
 yewLogXp <- 405

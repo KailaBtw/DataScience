@@ -36,13 +36,6 @@ layout(title = "Effect of transmission type on MPG",
             
              #+markers
 
-title = list(
-  text = "Effect of transmission type on MPG",
-    x= 
-    y= 
-  
-)
-
 #rbind(c(1,2,3,4,5),c(2,3,4,5,6))
 mtcars$mpg
 mtcars$am

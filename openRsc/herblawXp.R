@@ -92,7 +92,7 @@ limps = 806000+2000000
 snapes = 604000+2000000
 horns = 1186000+35000+2000000
 eggs = 503000
-berries = 168000 
+berries = 168000
 wines = 73000+2000000
 
 #other vars
